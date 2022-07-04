@@ -1,5 +1,8 @@
+import { rotatePoint2D } from './util'
+
 /**
  * Length = number of dimensions
+ * Values = [x, y, z, ...etc]
  * Magnitude = 0-1
  */
 type Point = number[]
@@ -58,6 +61,7 @@ export const getLayout = ({
 }
 
 const layoutOne = (points: Point[]): void => {
+  if (points.length === 0) return
   const half = Math.floor(points.length / 2)
   for (let i = 0, l = points.length; i < l; i++) {
     const point = points[i]
@@ -67,12 +71,30 @@ const layoutOne = (points: Point[]): void => {
 }
 
 const layoutTwo = (points: Point[]): void => {
-  // TODO - layout points around circle
-  const half = Math.floor(points.length / 2)
+  if (points.length === 0) return
+
+  const centerX = 0
+  const centerY = 0.5
+
+  if (points.length === 1 && points[0]) {
+    const point = points[0]
+    point[0] = centerX
+    point[1] = centerY
+    return
+  }
+
+  const full = Math.PI * 2
+  const slice = full / points.length
+
   for (let i = 0, l = points.length; i < l; i++) {
     const point = points[i]
     if (!point) continue
-    point[0] = half <= i ? 0 : 1
+    const startX = 0
+    const startY = 0
+    const angle = slice * i
+    const [x, y] = rotatePoint2D(startX, startY, centerX, centerY, angle)
+    point[0] = x
+    point[1] = y
   }
 }
 

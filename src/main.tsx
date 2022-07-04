@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
+import { getLayout } from './layout/layout'
 
 const rootEl = document.getElementById('root')
 
@@ -12,3 +13,6 @@ ReactDOM.createRoot(rootEl).render(
     <App />
   </React.StrictMode>,
 )
+
+console.log(getLayout({ dimensionCount: 2, pointCount: 2 }))
+console.log(getLayout({ dimensionCount: 2, pointCount: 4 }))
