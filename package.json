@@ -2,6 +2,10 @@
   "name": "dimension-shapes",
   "private": true,
   "version": "0.0.0",
+  "engines": {
+    "node": "18.4",
+    "npm": "8.12"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
